@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
+import { withContext } from '../../context';
 
 const styles = theme => ({
   root: {
@@ -11,33 +12,42 @@ const styles = theme => ({
   },
 });
 
-const Footer = ({ muscles, category, onSelect }) => {
-  const index = category
-    ? muscles.findIndex(group => group === category) + 1
-    : 0;
-
-  const onIndexSelect = (e, index) => {
-    onSelect(index === 0 ? '' : muscles[index - 1]);
+class Footer extends Component {
+  onIndexSelect = (e, index) => {
+    const { onCategorySelect, muscles } = this.props;
+    onCategorySelect(index === 0 ? '' : muscles[index - 1]);
   };
 
-  return (
-    <AppBar position="static">
-      <Tabs
-        indicatorColor="secondary"
-        textColor="secondary"
-        // centered
-        value={index}
-        onChange={onIndexSelect}
-        variant="scrollable"
-        scrollButtons="auto"
-      >
-        <Tab label="All" />
-        {muscles.map(group => (
-          <Tab label={group} key={group} />
-        ))}
-      </Tabs>
-    </AppBar>
-  );
-};
+  getIndex = () => {
+    const { category, muscles } = this.props;
 
-export default withStyles(styles)(Footer);
+    return category
+      ? muscles.findIndex(group => group === category) + 1
+      : 0;
+  }
+
+  render() {
+    const { muscles } = this.props;
+
+    return (
+      <AppBar position="static">
+        <Tabs
+          indicatorColor="secondary"
+          textColor="secondary"
+          // centered
+          value={this.getIndex()}
+          onChange={this.onIndexSelect}
+          variant="scrollable"
+          scrollButtons="auto"
+        >
+          <Tab label="All" />
+          {muscles.map(group => (
+            <Tab label={group} key={group} />
+          ))}
+        </Tabs>
+      </AppBar>
+    );
+  }
+}
+
+export default withContext(withStyles(styles)(Footer));

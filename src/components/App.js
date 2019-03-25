@@ -87,6 +87,7 @@ class App extends Component {
   getContext = () => ({
     muscles,
     ...this.state,
+    onCategorySelect: this.handleTabSelect,
     onCreate: this.handleExerciseCreate
   })
 
@@ -112,11 +113,7 @@ class App extends Component {
             onSelectEdit={this.handleExerciseSelectEdit}
             onEdit={this.handleExerciseEdit}
           />
-          <Footer
-            category={category}
-            muscles={muscles}
-            onSelect={this.handleTabSelect}
-          />
+          <Footer />
         </>
       </Provider>
     );

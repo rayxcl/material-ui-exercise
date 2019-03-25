@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { red, deepOrange, amber } from '@material-ui/core/colors';
+import { deepOrange, amber } from '@material-ui/core/colors';
 
 import App from './components/App';
 import './styles.css';
@@ -12,7 +12,6 @@ const theme = createMuiTheme({
     useNextVariants: true
   },
   palette: {
-    // primary: red,
     primary: deepOrange,
     secondary: {
       // main: '#FFC107'
