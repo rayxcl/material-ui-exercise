@@ -1,12 +1,12 @@
+import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { deepOrange, amber } from '@material-ui/core/colors';
 
-import App from './components/App';
-import './styles.css';
+// import App from './components/App';
+// import './styles.css';
 
-// const theme = createMuiTheme();
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true
@@ -27,14 +27,14 @@ const theme = createMuiTheme({
   }
 });
 
-const rootElement = document.getElementById('root');
 
 // console.log(theme);
 // console.log(red);
 
-ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
-    <App />
-  </MuiThemeProvider>,
-  rootElement
-);
+import(/* webpackChunkName: 'app' */ './components/App')
+  .then(({ default: App }) => ReactDOM.render(
+    <MuiThemeProvider theme={theme}>
+      <App />
+    </MuiThemeProvider>,
+    document.getElementById('root')
+  ));

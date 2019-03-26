@@ -5,22 +5,33 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --port 4000 --compress --mode development",
+    "dev": "webpack --mode development --progress",
+    "build": "webpack --mode production --progress",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
+    "@babel/polyfill": "^7.4.0",
     "@material-ui/core": "3.9.2",
     "@material-ui/icons": "3.0.2",
     "react": "16.8.3",
-    "react-dom": "16.8.3",
-    "react-scripts": "2.0.3"
+    "react-dom": "16.8.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.16.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eslint-plugin-import": "^2.16.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -37,7 +48,6 @@
       "no-console": 0,
       "arrow-body-style": 0,
       "arrow-parens": 0,
-
       "linebreak-style": 0,
       "react/prop-types": 0,
       "no-shadow": 0,
@@ -51,14 +61,17 @@
     "settings": {
       "import/resolver": {
         "node": {
-          "moduleDirectory": ["node_modules", "src/"]
+          "moduleDirectory": [
+            "node_modules",
+            "src/"
+          ]
         }
       }
     }
-   },
-   "eslintIgnore": [
+  },
+  "eslintIgnore": [
     "*.test.js"
-   ],
+  ],
   "browserslist": [
     ">0.2%",
     "not dead",
