@@ -87,34 +87,22 @@ class App extends Component {
   getContext = () => ({
     muscles,
     ...this.state,
+    exercisesByMuscels: this.getExercisesByMuscles(),
     onCategorySelect: this.handleTabSelect,
-    onCreate: this.handleExerciseCreate
+    onCreate: this.handleExerciseCreate,
+    onSelect: this.handleExerciseSelect,
+    onSelectEdit: this.handleExerciseSelectEdit,
+    onEdit: this.handleExerciseEdit,
+    onDelete: this.handleExerciseDelete
   })
 
-
   render() {
-    const exercises = this.getExercisesByMuscles();
-    // console.log(exercises);
-
-    const { category, exercise, editMode } = this.state;
     return (
       <Provider value={this.getContext()}>
-        <>
-          <CssBaseline />
-          <Header />
-          <Exercises
-            exercise={exercise}
-            exercises={exercises}
-            muscles={muscles}
-            category={category}
-            editMode={editMode}
-            onSelect={this.handleExerciseSelect}
-            onDelete={this.handleExerciseDelete}
-            onSelectEdit={this.handleExerciseSelectEdit}
-            onEdit={this.handleExerciseEdit}
-          />
-          <Footer />
-        </>
+        <CssBaseline />
+        <Header />
+        <Exercises />
+        <Footer />
       </Provider>
     );
   }

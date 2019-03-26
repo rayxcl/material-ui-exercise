@@ -14,16 +14,8 @@ import { Delete, Edit } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 import Form from './Form';
+import { withContext } from '../../context';
 
-// const styles = {
-//   Paper: {
-//     padding: 20,
-//     marginTop: 5,
-//     marginBottom: 10,
-//     height: 500,
-//     overflowY: 'auto',
-//   },
-// };
 const styles = theme => ({
   paper: {
     // padding: 20,
@@ -61,20 +53,20 @@ const styles = theme => ({
 // export default ({
 const Exercises = ({
   classes,
-  exercises,
+  exercisesByMuscels,
   category,
   muscles,
   editMode,
-  onSelect,
   exercise,
   exercise: {
     id,
     title = 'Welcome!',
     description = 'Please select an exercise from the list on the left.'
   },
-  onDelete,
+  onSelect,
   onSelectEdit,
-  onEdit
+  onEdit,
+  onDelete
 }) => {
   return (
     <Grid
@@ -89,7 +81,7 @@ const Exercises = ({
         className={classes.item}
       >
         <Paper className={classes.paper}>
-          {exercises.map(([group, exercises]) => (
+          {exercisesByMuscels.map(([group, exercises]) => (
             !category || category === group
               ? (
                 <Fragment key={group}>
@@ -155,6 +147,6 @@ const Exercises = ({
   );
 };
 
-export default withStyles(styles)(Exercises);
+export default withContext(withStyles(styles)(Exercises));
 
 // export default  props => <div>Exercises</div>
